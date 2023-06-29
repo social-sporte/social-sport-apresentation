@@ -1,0 +1,11 @@
+{
+    "name": "social-sport-apresentation",
+    "version": "1.0.0",
+    "description": "Descrição do Social sport e apresentação da nossa Familia",
+    "scripts": {
+      "start": "npx serve"
+    },
+    "devDependencies": {
+      "serve": "^14.2.0"
+    }
+  }
