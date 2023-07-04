@@ -12,6 +12,31 @@
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+
+	<style>
+		.center-logo {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+		}
+
+		#sportCenters {
+			display: flex;
+			list-style: none;
+			padding: 0;
+		}
+
+		#sportCenters li {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-right: 20px;
+		}
+
+		#sportCenters li:last-child {
+			margin-right: 0;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -57,10 +82,10 @@
 								class="icon brands fa-apple" target="_blank">iOS</a>
 						</li>
 
-					</li>
+						</li>
 					</ul>
 				</div>
-<!-- 
+				<!-- 
 				<div class="col-6 col-12-medium">
 					<h4>Atleta</h4>
 
@@ -75,6 +100,8 @@
 					</ul>
 				</div> -->
 			</div>
+
+
 		</section>
 
 	</section>
@@ -131,8 +158,8 @@
 			<p> 1. Realize o cadastro no aplicativo como centro esportivo.<br>
 				2. Configure o horários de funcionamento.<br>
 				3. Configure suas imagens (logo e Banner).<br>
-		    	4. Registre suas quadras e valores.<br>
-		 	    5. Gerencie as solicitações de aluguel recebidas e aprove-as.<br>
+				4. Registre suas quadras e valores.<br>
+				5. Gerencie as solicitações de aluguel recebidas e aprove-as.<br>
 				6. Registre horário fixo para um responsável.<br>
 				7. Registre Regra de cancelamento.<br>
 				8. Utilize a Agenda para registrar e visualizar os aluguéis.<br>
@@ -172,7 +199,8 @@
 
 			<div class="visao">
 				<h3>Nossa Visão</h3>
-				<p>Tornar-se um plataforma que mude a experiencia dos atletas agendarem seu momentos esportivos, oferecendo uma solução abrangente para
+				<p>Tornar-se um plataforma que mude a experiencia dos atletas agendarem seu momentos esportivos,
+					oferecendo uma solução abrangente para
 					centros esportivos e atletas em todo o mundo.</p>
 			</div>
 
@@ -192,14 +220,56 @@
 
 			<div class="equipe">
 				<h3>Nossa Equipe</h3>
-				<p>A Social Sport é composta por uma equipe apaixonada pelo esporte, formada por especialistas em TI e amante dos esportes. Nossa equipe está empenhada em desenvolver e aprimorar continuamente
+				<p>A Social Sport é composta por uma equipe apaixonada pelo esporte, formada por especialistas em TI e
+					amante dos esportes. Nossa equipe está empenhada em desenvolver e aprimorar continuamente
 					o aplicativo para oferecer a melhor experiência aos nossos usuários.</p>
 			</div>
 		</section>
 	</section>
 
+
+	<section id="three" class="wrapper style2 special">
+		<header class="major">
+			<h2>Parceiros</h2>
+		</header>
+		<section>
+
+			<ul id="sportCenters"></ul>
+
+			<script>
+				fetch('https://social-sport-api-prd.herokuapp.com/public/sport-centers')
+				  .then(response => response.json())
+				  .then(data => {
+					const sportCentersList = document.getElementById('sportCenters');
+			  
+					data.forEach(center => {
+					  const listItem = document.createElement('li');
+					  listItem.textContent = `${center.name}`;
+			  
+					  const logoImage = document.createElement('img');
+					  logoImage.src = center.photoLogo;
+					  logoImage.alt = center.name;
+					  logoImage.classList.add('center-logo');
+					  listItem.appendChild(logoImage);
+			  
+					  listItem.addEventListener('click', () => {
+						window.open(`https://social-esporte.web.app/public/sport-centers/${center.username}`);
+					  });
+			  
+					  sportCentersList.appendChild(listItem);
+					});
+				  })
+				  .catch(error => {
+					console.error('Ocorreu um erro ao obter a lista de centros esportivos:', error);
+				  });
+			  </script>
+			  
+
+		</section>
+	</section>
+
 	<!-- Four -->
-<!-- 
+	<!-- 
 	<section id="four" class="wrapper">
 		<div class="inner">
 
